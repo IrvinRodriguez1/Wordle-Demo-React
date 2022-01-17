@@ -9,7 +9,7 @@ const App=()=>{
   const [wordGuessed, setWordGuessed] = useState('')
   const [counter, setCounter] = useState(0)
   const [answer, setAnswer]= useState(data[Math.floor(Math.random()*data.length)])
-  console.log(answer)
+  console.log('Left this on purpose , Here is the answer: ' + answer)
   function wordUserGuessed(word){
     if(word!==wordGuessed && wordGuessed !== answer && counter<6){
       setWordGuessed(word)

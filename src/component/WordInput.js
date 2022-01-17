@@ -17,7 +17,7 @@ const WordInput=({wordUserGuessed})=>{
 
   return(
     <form className="user-input" onSubmit={onSubmit}>
-      <label htmlFor='user-input'>My guess:</label>
+      <label htmlFor='user-input'>My guess: </label>
       <input type='text' id='user-input' name='user-input' />
       <button type='submit'>Submit</button>
     </form>
