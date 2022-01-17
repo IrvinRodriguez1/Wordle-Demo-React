@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import Board from "./component/Board";
+import WordInput from './component/WordInput';
+import './App.css'
+let data = require('./data/word5.json')
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App=()=>{
+  const [wordGuessed, setWordGuessed] = useState('')
+  const [counter, setCounter] = useState(0)
+  const [answer, setAnswer]= useState(data[Math.floor(Math.random()*data.length)])
+  console.log(answer)
+  function wordUserGuessed(word){
+    if(word!==wordGuessed && wordGuessed !== answer && counter<6){
+      setWordGuessed(word)
+      setCounter(counter + 1)
+      
+    }
+     
+  }
+
+  
+  return(
+    <div className='app-container'>
+      <h1>Wordle Demo</h1>
+       <WordInput wordUserGuessed={wordUserGuessed}/>
+       <Board wordGuessed={wordGuessed} correctWord={answer} counter={counter} setCounter={setCounter}/>
     </div>
-  );
+   
+    )
 }
 
 export default App;

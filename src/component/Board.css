@@ -1,0 +1,16 @@
+.board-container{
+  width: 500px;
+  margin: auto;
+  padding-top: 20px;
+}
+
+.container{
+  display:grid;
+  grid-template-columns: repeat(5, 70px);
+  grid-template-rows: repeat(6,70px);
+  justify-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+

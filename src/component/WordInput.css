@@ -1,0 +1,15 @@
+.user-input{
+  padding-top: 20px;
+  text-align: center;
+
+}
+
+.user-input input{
+  width: 90%;
+}
+
+@media(min-width:450px){
+  .user-input input{
+      width: 200px;  
+  }
+}
