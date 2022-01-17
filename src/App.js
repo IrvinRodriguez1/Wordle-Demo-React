@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Board from "./component/Board";
 import WordInput from './component/WordInput';
+import Instructions from "./component/Instructions";
 import './App.css'
 let data = require('./data/word5.json')
 
@@ -24,6 +25,7 @@ const App=()=>{
       <h1>Wordle Demo</h1>
        <WordInput wordUserGuessed={wordUserGuessed}/>
        <Board wordGuessed={wordGuessed} correctWord={answer} counter={counter} setCounter={setCounter}/>
+       <Instructions/>
     </div>
    
     )
