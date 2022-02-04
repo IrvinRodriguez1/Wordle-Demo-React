@@ -4,6 +4,7 @@ const binarySearch = (word)=>{
  
   let leftPointer = 0;
   let rightPointer = data.length-1;
+  
  while(leftPointer<=rightPointer){
    
   let midPointer = Math.floor((rightPointer+leftPointer)/2)
@@ -11,7 +12,7 @@ const binarySearch = (word)=>{
   if(data[midPointer]===word){
     return true;
   }
-console.log()
+
   if(data[midPointer]<word){
      leftPointer=midPointer+1
      
