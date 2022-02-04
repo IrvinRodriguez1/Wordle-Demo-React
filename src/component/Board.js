@@ -11,41 +11,8 @@ const Board = ({wordGuessed, correctWord, counter, setCounter})=>{
 
   
   useEffect(()=>{
-    let tempBoard=[]
-    let tempRow = []
-  if(wordGuessed.length===5){
+   checkGuess()
 
-     for(let i=0; i<wordGuessed.length;i++){
-      let tempLetter ={}
-       let char = wordGuessed[i]
-        tempLetter={letter:char}
-       if(answer[char]){
-         for(let answerCharIndex of answer[char]){
-           if(answerCharIndex === i){
-             tempLetter.color='green'
-           }
-         }
-         if(!tempLetter.color){
-           tempLetter.color='yellow'
-         }
-       }else{
-         tempLetter.color='grey';
-       }
-
-       tempRow.push(<Tile key={`${Math.random()}`} letter={tempLetter.letter.toUpperCase()} color={tempLetter.color}/>)
-       tempBoard=board.map(element=>element);
-       tempBoard[counter-1]=tempRow;
-       setBoard( tempBoard)
-       if(correctWord===wordGuessed){
-        setMessage('You win')
-        setCounter(6)
-       }
-       if(correctWord!==wordGuessed && counter ===6){
-         setMessage(`The Answer Was: ${correctWord.toUpperCase()}`)
-       }
-     }
-
-  }
 },[wordGuessed])
 
   useEffect(()=>{
@@ -57,7 +24,7 @@ const Board = ({wordGuessed, correctWord, counter, setCounter})=>{
         tempAnswer[correctWord[i]]= [i]
       }
     }
-      
+      console.log(tempAnswer)
       setAnswer(tempAnswer)
     let tempBoard =[]
     for(let i=0;i<6;i++){
@@ -71,7 +38,55 @@ const Board = ({wordGuessed, correctWord, counter, setCounter})=>{
     
   },[])
 
+function checkGuess(){
 
+  let tempBoard=[]
+  let tempRow = []
+  let wordGuessMap = {}
+if(wordGuessed.length!==0){
+
+   for(let i=0; i<wordGuessed.length;i++){
+    let tempLetter ={}
+     let char = wordGuessed[i]
+
+     if(!wordGuessMap[char]){
+       wordGuessMap[char]=1;
+     }else{
+       wordGuessMap[char]+=1;
+     }
+
+      tempLetter={letter:char}
+     if(answer[char] && answer[char].length>=wordGuessMap[char]){
+       for(let answerCharIndex of answer[char]){
+        if(answerCharIndex === i){
+           tempLetter.color='green'
+         }
+       }
+       if(!tempLetter.color){
+         tempLetter.color='yellow'
+       }
+    
+     }else{
+       tempLetter.color='grey';
+     }
+
+     tempRow.push(<Tile key={`${Math.random()}`} letter={tempLetter.letter.toUpperCase()} color={tempLetter.color}/>)
+     tempBoard=board.map(element=>element);
+     tempBoard[counter-1]=tempRow;
+     setBoard( tempBoard)
+
+     
+   }
+
+   if(correctWord===wordGuessed){
+    setMessage('You win')
+    setCounter(6)
+   }
+   if(correctWord!==wordGuessed && counter ===6){
+     setMessage(`The Answer Was: ${correctWord.toUpperCase()}`)
+   }
+}
+}
   
 return(
 

@@ -3,12 +3,14 @@ import Board from "./component/Board";
 import WordInput from './component/WordInput';
 import Instructions from "./component/Instructions";
 import './App.css'
-let data = require('./data/word5.json')
+let data = require('./data/wordSorted.json')
+
+const answer = data[Math.floor(Math.random()*data.length)];
 
 const App=()=>{
   const [wordGuessed, setWordGuessed] = useState('')
   const [counter, setCounter] = useState(0)
-  const [answer, setAnswer]= useState(data[Math.floor(Math.random()*data.length)])
+  
   console.log('Left this on purpose , Here is the answer: ' + answer)
   function wordUserGuessed(word){
     if(word!==wordGuessed && wordGuessed !== answer && counter<6){

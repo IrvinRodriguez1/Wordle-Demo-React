@@ -1,16 +1,20 @@
 import {useState} from 'react'
+import binarySearch from '../helperFunctions/binarySearch'
 import './WordInput.css'
 
+
+
 const WordInput=({wordUserGuessed})=>{
-  const[inputValue, setInputValue]=useState('')
+  
   const onSubmit =(e)=>{
     e.preventDefault()
-    if(e.target[0].value.length===5){
+    let wordInput = e.target[0].value
+    if(binarySearch(wordInput)){
       
-      wordUserGuessed(e.target[0].value)
+      wordUserGuessed(wordInput)
       e.target[0].value=''
     }else{
-      console.log('word not 5 characters long')
+      console.log('Word not found in our word database make sure its 5 letter word')
     }
     
   }
